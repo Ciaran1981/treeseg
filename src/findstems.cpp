@@ -74,7 +74,8 @@ int main(int argc, char **argv)
 	{
 		cylinder cyl;
 		fitCylinder(regions[i],nnearest,true,true,cyl);
-		//std::cout << cyl.ismodel << " " << cyl.rad << " " << cyl.len << " " << cyl.stepcov << " " << cyl.radratio << " " << cyl.x << " " << cyl.y << std::endl;
+		// to help with debug
+		std::cout << cyl.ismodel << " " << cyl.rad << " " << cyl.len << " " << cyl.stepcov << " " << cyl.radratio << " " << cyl.x << " " << cyl.y << std::endl;
 		if(cyl.ismodel == true)
 		{		
 			if(cyl.rad*2 >= dmin && cyl.rad*2 <= dmax && cyl.len >= lmin)
@@ -132,9 +133,18 @@ int main(int argc, char **argv)
 	writeClouds(stems,ss.str(),false);
 	for(int m=0;m<stems.size();m++)
 	{
-		ss.str("");
-		ss << id[0] << ".cluster." << m << ".pcd";
-		writer.write(ss.str(),*stems[m],true);
+          // workaround suggested on git for empty cloud....
+          if (stems[m]->points.size() > 0)
+             {
+  		ss.str("");
+  		ss << id[0] << ".cluster." << m << ".pcd";
+  		writer.write(ss.str(),*stems[m],true);
+
+	      }
+                // the old stuff is here   
+		//ss.str("");
+		//ss << id[0] << ".cluster." << m << ".pcd";
+		//writer.write(ss.str(),*stems[m],true);
 	}
 	std::cout << stems.size() << std::endl;
 	//
