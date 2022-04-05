@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 			}
 		}
 	}
-        std::cout << "Sorting cyliders";
+        std::cout << "Sorting cyliders" << std::flush;
 	std::sort(cylinders.rbegin(),cylinders.rend());
 	std::vector<pcl::PointCloud<PointTreeseg>::Ptr> cyls;
 	for(int i=0;i<cylinders.size();i++) cyls.push_back(cylinders[i].second);
