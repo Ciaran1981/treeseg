@@ -93,6 +93,7 @@ int main(int argc, char **argv)
 			}
 		}
 	}
+        std::cout << "Sorting cyliders";
 	std::sort(cylinders.rbegin(),cylinders.rend());
 	std::vector<pcl::PointCloud<PointTreeseg>::Ptr> cyls;
 	for(int i=0;i<cylinders.size();i++) cyls.push_back(cylinders[i].second);
@@ -134,17 +135,17 @@ int main(int argc, char **argv)
 	for(int m=0;m<stems.size();m++)
 	{
           // workaround suggested on git for empty cloud....
-          //if (stems[m]->points.size() > 0)
-             //{
-  	     //	ss.str("");
-  		//ss << id[0] << ".cluster." << m << ".pcd";
-  		//writer.write(ss.str(),*stems[m],true);
+          if (stems[m]->points.size() > 0)
+             {
+  		ss.str("");
+  		ss << id[0] << ".cluster." << m << ".pcd";
+  		writer.write(ss.str(),*stems[m],true);
 
-	      //}
+	      }
                 // the old stuff is here   
-		ss.str("");
-		ss << id[0] << ".cluster." << m << ".pcd";
-		writer.write(ss.str(),*stems[m],true);
+		//ss.str("");
+		//ss << id[0] << ".cluster." << m << ".pcd";
+		//writer.write(ss.str(),*stems[m],true);
 	}
 	std::cout << stems.size() << std::endl;
 	//
